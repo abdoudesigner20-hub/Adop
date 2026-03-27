@@ -1,42 +1,31 @@
 [app]
 
-# اسم التطبيق الذي سيظهر على الهاتف
 title = Currency Converter Pro
+package.name = currencyconverter
+package.domain = org.abdoudessigner
 
-# اسم الحزمة (يجب أن يكون فريداً وبدون مسافات)
-package.name = currency_pro_app
+source.dir = .
+source.include_exts = py,png,jpg,jpeg,mp3,json
 
-# النطاق (يمكنك تركه كما هو أو تغييره)
-package.domain = org.abdoudesigner
+version = 1.0
 
-# الامتدادات التي يجب تضمينها (أضفنا mp3 و json و png لأن كودك يستخدمها)
-source.include_exts = py, png, jpg, kv, atlas, json, mp3
+requirements = python3,kivy,requests,kivmob,
 
-# المتطلبات البرمجية (Requirements) - حيوية جداً لكودك
-# لاحظ إضافة openssl لدعم روابط https في مكتبة requests
-requirements = python3, kivy==2.2.1, kivymd, requests, pillow, certifi, openssl, kivmob
+orientation = portrait
 
-# الصلاحيات التي يحتاجها تطبيقك
-# يحتاج إنترنت لجلب العملات وعرض الإعلانات
-android.permissions = INTERNET, ACCESS_NETWORK_STATE
+fullscreen = 0
 
-# (int) Target Android API (يفضل 33 حالياً لمتجر جوجل)
+android.permissions = INTERNET
+
 android.api = 33
-
-# (int) Minimum API
 android.minapi = 21
 
-# (str) Android NDK version (متوافق مع Buildozer Action)
-android.ndk = 25b
+android.gradle_dependencies = com.google.android.gms:play-services-ads:22.6.0
 
-# المعماريات المدعومة (لضمان عمله على أغلب الهواتف)
 android.archs = arm64-v8a, armeabi-v7a
 
-# قبول التراخيص تلقائياً (مهم لـ GitHub Actions)
-android.accept_sdk_license = True
+android.allow_backup = True
 
-# إضافة مكتبات Gradle الخاصة بالإعلانات (مهم لـ KivMob)
-android.gradle_dependencies = 'com.google.android.gms:play-services-ads:22.0.0'
+android.private_storage = True
 
-[buildozer]
-log_level = 2
+android.logcat_filters = *:S python:D
