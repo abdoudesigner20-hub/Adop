@@ -2,25 +2,25 @@ name: Build APK
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # تحديد نسخة مستقرة من نظام التشغيل
 
     steps:
-      - uses: actions/checkout@v4  # تم التحديث إلى v4
+      - uses: actions/checkout@v4
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         with:
           command: buildozer android debug
           buildozer_version: master
+        env:
+          USER: root  # هذا السطر يحل مشكلة invalid user 'user'
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4  # هذا هو التعديل المطلوب لحل الخطأ (v4)
+        uses: actions/upload-artifact@v4
         with:
-          name: my-app-bundle
+          name: Currency Converter Pro-apk
           path: bin/*.apk
           
